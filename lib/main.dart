@@ -18,8 +18,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+      
       ),
-      getPages: AppPages.pages,
+      // initialRoute: AppPages.initial,
+      // getPages: AppPages.pages,
+      
+      // getPages: AppPages.pages,
       home: const SearchSreen(),
     );
   }

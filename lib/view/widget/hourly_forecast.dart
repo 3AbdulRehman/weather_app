@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:weather_app/Controller/home_controller.dart';
 
-class HourlyForecast extends GetView<HomeController> {
+class HourlyForecast extends StatelessWidget {
   final double w;
   final double h;
-  const HourlyForecast({super.key, required this.w, required this.h});
+  final double temp;
+  final double temf;
+  final String name;
+  final IconData icon;
+  const HourlyForecast(
+      {super.key,
+      required this.w,
+      required this.h,
+      required this.name,
+      required this.temf,
+      required this.temp,
+      required this.icon});
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeController());
     return Container(
       margin: EdgeInsets.only(right: w * 0.02),
       width: w * 0.18,
@@ -17,13 +25,18 @@ class HourlyForecast extends GetView<HomeController> {
         borderRadius: BorderRadius.circular(w * 0.05),
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(controller.weatherData.current!.tempC!.toString(),
+          SizedBox(
+            height: h * 0.02,
+          ),
+          Text(name, style: TextStyle(color: Colors.white, fontSize: w * 0.03)),
+          Text(temp.toString(),
               style: TextStyle(color: Colors.white, fontSize: w * 0.03)),
-          Icon(Icons.wb_sunny, color: Colors.yellow, size: w * 0.07),
+          Icon(icon, color: Colors.yellow, size: w * 0.07),
           Text(
-            controller.weatherData.current!.tempF!.toString(),
+            temf.toString(),
             style: TextStyle(
               color: Colors.white,
               fontSize: w * 0.035,

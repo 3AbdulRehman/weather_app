@@ -30,18 +30,19 @@ class Location {
   double? lat;
   double? lon;
   String? tzId;
-  double? localtimeEpoch;
+  int? localtimeEpoch; // Changed from double? to int?
   String? localtime;
 
-  Location(
-      {this.name,
-      this.region,
-      this.country,
-      this.lat,
-      this.lon,
-      this.tzId,
-      this.localtimeEpoch,
-      this.localtime});
+  Location({
+    this.name,
+    this.region,
+    this.country,
+    this.lat,
+    this.lon,
+    this.tzId,
+    this.localtimeEpoch,
+    this.localtime,
+  });
 
   Location.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -69,22 +70,22 @@ class Location {
 }
 
 class Current {
-  double? lastUpdatedEpoch;
+  int? lastUpdatedEpoch; // Changed from double? to int?
   String? lastUpdated;
   double? tempC;
   double? tempF;
-  double? isDay;
+  int? isDay; // Changed from double? to int?
   Condition? condition;
   double? windMph;
   double? windKph;
-  double? windDegree;
+  int? windDegree; // Changed from double? to int?
   String? windDir;
   double? pressureMb;
   double? pressureIn;
   double? precipMm;
   double? precipIn;
-  double? humidity;
-  double? cloud;
+  int? humidity; // Changed from double? to int?
+  int? cloud; // Changed from double? to int?
   double? feelslikeC;
   double? feelslikeF;
   double? visKm;
@@ -94,31 +95,32 @@ class Current {
   double? gustKph;
   AirQuality? airQuality;
 
-  Current(
-      {this.lastUpdatedEpoch,
-      this.lastUpdated,
-      this.tempC,
-      this.tempF,
-      this.isDay,
-      this.condition,
-      this.windMph,
-      this.windKph,
-      this.windDegree,
-      this.windDir,
-      this.pressureMb,
-      this.pressureIn,
-      this.precipMm,
-      this.precipIn,
-      this.humidity,
-      this.cloud,
-      this.feelslikeC,
-      this.feelslikeF,
-      this.visKm,
-      this.visMiles,
-      this.uv,
-      this.gustMph,
-      this.gustKph,
-      this.airQuality});
+  Current({
+    this.lastUpdatedEpoch,
+    this.lastUpdated,
+    this.tempC,
+    this.tempF,
+    this.isDay,
+    this.condition,
+    this.windMph,
+    this.windKph,
+    this.windDegree,
+    this.windDir,
+    this.pressureMb,
+    this.pressureIn,
+    this.precipMm,
+    this.precipIn,
+    this.humidity,
+    this.cloud,
+    this.feelslikeC,
+    this.feelslikeF,
+    this.visKm,
+    this.visMiles,
+    this.uv,
+    this.gustMph,
+    this.gustKph,
+    this.airQuality,
+  });
 
   Current.fromJson(Map<String, dynamic> json) {
     lastUpdatedEpoch = json['last_updated_epoch'];
@@ -188,7 +190,7 @@ class Current {
 class Condition {
   String? text;
   String? icon;
-  double? code;
+  int? code; // Changed from double? to int?
 
   Condition({this.text, this.icon, this.code});
 
@@ -208,24 +210,25 @@ class Condition {
 }
 
 class AirQuality {
-  double? co;
-  double? no2;
-  double? o3;
-  double? so2;
-  double? pm25;
-  double? pm10;
-  double? usEpaIndex;
-  double? gbDefraIndex;
+  int? co; // Changed from double? to int?
+  int? no2; // Changed from double? to int?
+  int? o3; // Changed from double? to int?
+  int? so2; // Changed from double? to int?
+  int? pm25; // Changed from double? to int?
+  int? pm10; // Changed from double? to int?
+  int? usEpaIndex; // Changed from double? to int?
+  int? gbDefraIndex; // Changed from double? to int?
 
-  AirQuality(
-      {this.co,
-      this.no2,
-      this.o3,
-      this.so2,
-      this.pm25,
-      this.pm10,
-      this.usEpaIndex,
-      this.gbDefraIndex});
+  AirQuality({
+    this.co,
+    this.no2,
+    this.o3,
+    this.so2,
+    this.pm25,
+    this.pm10,
+    this.usEpaIndex,
+    this.gbDefraIndex,
+  });
 
   AirQuality.fromJson(Map<String, dynamic> json) {
     co = json['co'];

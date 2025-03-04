@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weather_app/Controller/search_controller.dart';
 import 'package:weather_app/routes/app_routes.dart';
+import 'package:weather_app/view/home_screen.dart';
 
 class SearchSreen extends GetView<SearchCityController> {
   const SearchSreen({super.key});
@@ -87,13 +88,7 @@ class SearchSreen extends GetView<SearchCityController> {
                       elevation: 0,
                     ),
                     onPressed: () async {
-                      if (controller.cityController.text.isNotEmpty) {
-                        await controller.fetchWeatherData();
-                        if (controller.weatherList.isNotEmpty) {
-                          Get.toNamed(AppRoutes.home,
-                              arguments: controller.weatherList.first);
-                        }
-                      }
+                      controller.fetchWeatherData();
                     },
                     child: Obx(() => controller.isLoading.value
                         ? const SizedBox(
@@ -101,7 +96,7 @@ class SearchSreen extends GetView<SearchCityController> {
                             height: 20,
                             child: CircularProgressIndicator(
                               color: Colors.white,
-                              strokeWidth: 2, 
+                              strokeWidth: 2,
                             ),
                           )
                         : const Text(

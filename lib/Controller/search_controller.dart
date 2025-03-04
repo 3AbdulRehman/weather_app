@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:weather_app/model/weather_model.dart';
 import 'package:weather_app/rep/weather_services.dart';
+import 'package:weather_app/routes/app_routes.dart';
+import 'package:weather_app/view/home_screen.dart';
 
 class SearchCityController extends GetxController {
   final WeatherService _weatherService = WeatherService();
@@ -11,22 +14,27 @@ class SearchCityController extends GetxController {
 
   var weatherList = <WeatherModel>[].obs;
   var isLoading = false.obs;
+  var loadingIs = false.obs;
+
   var city = ''.obs;
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  //   getCurrentLocation();
-  // }
+  @override
+  void onInit() {
+    super.onInit();
+    getCurrentLocation();
+  }
 
   Future<void> fetchWeatherData() async {
     try {
       isLoading.value = true;
-      final result =
-          await _weatherService.fetchWeather(cityController.text.trim());
+      final result = await _weatherService.fetchWeather(city.value);
       weatherList.add(result);
+      if (weatherList.isNotEmpty) {
+        Get.to(() => const HomeScreen());
+      }
     } catch (e) {
       Exception(e.toString());
+      print(e.toString());
     } finally {
       isLoading.value = false;
     }
@@ -34,13 +42,13 @@ class SearchCityController extends GetxController {
 
   Future<void> getCurrentLocation() async {
     try {
-      isLoading.value = true;
+      loadingIs.value = true;
       // Check permission
       LocationPermission permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
         if (permission == LocationPermission.deniedForever) {
-          isLoading.value = false;
+          loadingIs.value = false;
           Get.snackbar(
               "Permission Denied", "Enable location permissions from settings");
           return;
@@ -62,12 +70,17 @@ class SearchCityController extends GetxController {
       if (placemarks.isNotEmpty) {
         city.value = placemarks.first.locality ?? "Unknown City";
         print(city.value);
-        fetchWeatherData();
       }
     } catch (e) {
       Get.snackbar("Error", "Failed to fetch location: $e");
     } finally {
-      isLoading.value = false;
+      loadingIs.value = false;
     }
   }
+
+  String get formattedLocalTime {
+    DateTime parsedDate = DateTime.parse(weatherList.first.location!.localtime!);
+    return DateFormat('EEEE, d MMMM, hh:mm a').format(parsedDate);
+  }
+  
 }
