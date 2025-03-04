@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/model/weather_model.dart';
 import 'package:weather_app/rep/weather_services.dart';
-import 'package:weather_app/routes/app_routes.dart';
 import 'package:weather_app/view/home_screen.dart';
 
 class SearchCityController extends GetxController {
@@ -15,13 +14,36 @@ class SearchCityController extends GetxController {
   var weatherList = <WeatherModel>[].obs;
   var isLoading = false.obs;
   var loadingIs = false.obs;
-
   var city = ''.obs;
+
+  ///
+  // Search
+  RxBool issearch = false.obs;
+  void searching() {
+    issearch.value = !issearch.value;
+  }
 
   @override
   void onInit() {
     super.onInit();
     getCurrentLocation();
+  }
+
+  Future<void> searcCity() async {
+    try {
+      isLoading.value = true;
+      final result =
+          await _weatherService.fetchWeather(cityController.text.trim());
+      if (weatherList.isNotEmpty) {
+        weatherList.clear();
+        weatherList.add(result);
+      }
+    } catch (e) {
+      Exception(e.toString());
+      print(e.toString());
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   Future<void> fetchWeatherData() async {
@@ -79,8 +101,8 @@ class SearchCityController extends GetxController {
   }
 
   String get formattedLocalTime {
-    DateTime parsedDate = DateTime.parse(weatherList.first.location!.localtime!);
+    DateTime parsedDate =
+        DateTime.parse(weatherList.first.location!.localtime!);
     return DateFormat('EEEE, d MMMM, hh:mm a').format(parsedDate);
   }
-  
 }

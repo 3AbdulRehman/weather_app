@@ -70,24 +70,30 @@ class Location {
 }
 
 class Current {
-  int? lastUpdatedEpoch; // Changed from double? to int?
+  int? lastUpdatedEpoch;
   String? lastUpdated;
   double? tempC;
   double? tempF;
-  int? isDay; // Changed from double? to int?
+  int? isDay;
   Condition? condition;
   double? windMph;
   double? windKph;
-  int? windDegree; // Changed from double? to int?
+  int? windDegree;
   String? windDir;
   double? pressureMb;
   double? pressureIn;
   double? precipMm;
   double? precipIn;
-  int? humidity; // Changed from double? to int?
-  int? cloud; // Changed from double? to int?
+  int? humidity;
+  int? cloud;
   double? feelslikeC;
   double? feelslikeF;
+  double? windchillC; // Added
+  double? windchillF; // Added
+  double? heatindexC; // Added
+  double? heatindexF; // Added
+  double? dewpointC; // Added
+  double? dewpointF; // Added
   double? visKm;
   double? visMiles;
   double? uv;
@@ -114,6 +120,12 @@ class Current {
     this.cloud,
     this.feelslikeC,
     this.feelslikeF,
+    this.windchillC, // Added
+    this.windchillF, // Added
+    this.heatindexC, // Added
+    this.heatindexF, // Added
+    this.dewpointC, // Added
+    this.dewpointF, // Added
     this.visKm,
     this.visMiles,
     this.uv,
@@ -143,6 +155,12 @@ class Current {
     cloud = json['cloud'];
     feelslikeC = json['feelslike_c'];
     feelslikeF = json['feelslike_f'];
+    windchillC = json['windchill_c']; // Added
+    windchillF = json['windchill_f']; // Added
+    heatindexC = json['heatindex_c']; // Added
+    heatindexF = json['heatindex_f']; // Added
+    dewpointC = json['dewpoint_c']; // Added
+    dewpointF = json['dewpoint_f']; // Added
     visKm = json['vis_km'];
     visMiles = json['vis_miles'];
     uv = json['uv'];
@@ -175,6 +193,12 @@ class Current {
     data['cloud'] = cloud;
     data['feelslike_c'] = feelslikeC;
     data['feelslike_f'] = feelslikeF;
+    data['windchill_c'] = windchillC; // Added
+    data['windchill_f'] = windchillF; // Added
+    data['heatindex_c'] = heatindexC; // Added
+    data['heatindex_f'] = heatindexF; // Added
+    data['dewpoint_c'] = dewpointC; // Added
+    data['dewpoint_f'] = dewpointF; // Added
     data['vis_km'] = visKm;
     data['vis_miles'] = visMiles;
     data['uv'] = uv;

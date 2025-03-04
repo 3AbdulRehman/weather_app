@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weather_app/Controller/search_controller.dart';
-import 'package:weather_app/routes/app_routes.dart';
-import 'package:weather_app/view/home_screen.dart';
 
 class SearchSreen extends GetView<SearchCityController> {
   const SearchSreen({super.key});
@@ -34,7 +32,7 @@ class SearchSreen extends GetView<SearchCityController> {
             padding:
                 const EdgeInsets.symmetric(vertical: 50.0, horizontal: 15.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 80),
                 Center(
@@ -60,22 +58,6 @@ class SearchSreen extends GetView<SearchCityController> {
                   textAlign: TextAlign.start,
                 ),
                 const SizedBox(height: 20),
-                TextField(
-                  controller: controller.cityController,
-                  style: const TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    hintText: "Enter city name...",
-                    hintStyle: const TextStyle(color: Colors.white70),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.2),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide.none,
-                    ),
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 15),
-                  ),
-                ),
                 const SizedBox(height: 30),
                 Center(
                   child: ElevatedButton(
