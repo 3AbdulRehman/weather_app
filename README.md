@@ -5,7 +5,7 @@
 A Flutter-based weather application that provides real-time weather updates.
 
 ## Features
-
+- Auto Pick City Weather
 - Real-time weather data
 - Location-based weather updates
 - Beautiful UI with animations
